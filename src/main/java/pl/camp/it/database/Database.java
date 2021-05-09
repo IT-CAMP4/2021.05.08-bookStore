@@ -46,4 +46,8 @@ public class Database {
     public List<Book> getAllBooks() {
         return this.books;
     }
+
+    public void addBook(Book book) {
+        this.books.add(book);
+    }
 }

@@ -1,0 +1,26 @@
+#info {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+#contact-form {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+#contact-form input[type=text] {
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+    font-size: 20px;
+    text-align: center;
+}
+
+#contact-form textarea {
+    width: 50%;
+    font-size: 20px;
+    resize: none;
+    height: 200px;
+}

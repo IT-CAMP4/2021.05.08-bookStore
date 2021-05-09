@@ -1,0 +1,13 @@
+#add-book-form {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+#add-book-form input[type=text] {
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+    font-size: 20px;
+    text-align: center;
+}

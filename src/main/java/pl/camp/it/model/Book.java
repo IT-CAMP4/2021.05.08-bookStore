@@ -3,11 +3,14 @@ package pl.camp.it.model;
 public class Book {
     private String title;
     private String author;
-    private double price;
-    private int pieces;
+    private Double price;
+    private Integer pieces;
     private String isbn;
 
-    public Book(String title, String author, double price, int pieces, String isbn) {
+    public Book() {
+    }
+
+    public Book(String title, String author, Double price, Integer pieces, String isbn) {
         this.title = title;
         this.author = author;
         this.price = price;
@@ -31,19 +34,19 @@ public class Book {
         this.author = author;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getPieces() {
+    public Integer getPieces() {
         return pieces;
     }
 
-    public void setPieces(int pieces) {
+    public void setPieces(Integer pieces) {
         this.pieces = pieces;
     }
 

@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Super Księgarnia</title>
     <link rel="stylesheet" href="/main.css"/>
+    <link rel="stylesheet" href="/commons.css"/>
 </head>
 <body>
     <img src="/logo.png" alt="Logo" id="logo">
     <div id="menu">
         <a href="/main">Strona Główna</a>
         <a href="/contact">Kontakt</a>
+        <a href="/addBook">Dodaj książkę</a>
     </div>
-    <div>
-
+    <div id="content">
+        <th:block th:each="book : ${books}">
+            <div class="book">
+                <p th:text="${book.title}" class="book-title"></p>
+                <p th:text="${book.author}" class="book-author"></p>
+                <div class="book-info">
+                    <div th:text="'Cena: ' + ${book.price}"></div>
+                    <div th:text="'Ilość sztuk: ' + ${book.pieces}"></div>
+                    <div th:text="'ISBN: ' + ${book.isbn}"></div>
+                </div>
+            </div>
+        </th:block>
     </div>
 </body>
 </html>
