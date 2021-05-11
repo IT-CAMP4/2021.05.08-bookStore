@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Księgarnia</title>
+    <link rel="stylesheet" href="/login.css"/>
+    <link rel="stylesheet" href="/commons.css"/>
+    <script src="/login.js"></script>
+</head>
+<body>
+<img src="/logo.png" alt="Logo" id="logo">
+<div id="content">
+    <form id="login-form" method="post" onsubmit="return validate()">
+        <div th:if="${info != null}" th:text="${info}" class="error-info"></div>
+        <input type="text" placeholder="Login" id="login-field" name="login">
+        <input type="password" placeholder="Hasło" id="password-field" name="password">
+        <input type="submit" value="Zaloguj">
+    </form>
+</div>
+</body>
+</html>

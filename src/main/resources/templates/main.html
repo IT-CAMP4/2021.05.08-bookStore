@@ -7,12 +7,8 @@
     <link rel="stylesheet" href="/commons.css"/>
 </head>
 <body>
-    <img src="/logo.png" alt="Logo" id="logo">
-    <div id="menu">
-        <a href="/main">Strona Główna</a>
-        <a href="/contact">Kontakt</a>
-        <a href="/addBook">Dodaj książkę</a>
-    </div>
+    <div th:replace="fragments.html :: logo"></div>
+    <div th:replace="fragments.html :: menu"></div>
     <div id="content">
         <th:block th:each="book : ${books}">
             <div class="book">
@@ -22,6 +18,8 @@
                     <div th:text="'Cena: ' + ${book.price}"></div>
                     <div th:text="'Ilość sztuk: ' + ${book.pieces}"></div>
                     <div th:text="'ISBN: ' + ${book.isbn}"></div>
+                    <div th:if="${role?.name() == 'ADMIN'}"><a th:href="@{/editBook/{isbn}(isbn=${book.isbn})}">edytuj</a></div>
+                    <div th:if="${role?.name() == 'USER'}"><a th:href="@{/addToBasket/{isbn}(isbn=${book.isbn})}">dodaj do koszyka</a></div>
                 </div>
             </div>
         </th:block>

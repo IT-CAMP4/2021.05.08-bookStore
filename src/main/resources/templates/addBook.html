@@ -5,21 +5,19 @@
     <title>Super Księgarnia</title>
     <link rel="stylesheet" href="/addBook.css"/>
     <link rel="stylesheet" href="/commons.css"/>
+    <script src="/addBook.js"></script>
 </head>
 <body>
-<img src="/logo.png" alt="Logo" id="logo">
-<div id="menu">
-    <a href="/main">Strona Główna</a>
-    <a href="/contact">Kontakt</a>
-    <a href="/addBook">Dodaj książkę</a>
-</div>
+<div th:replace="fragments.html :: logo"></div>
+<div th:replace="fragments.html :: menu"></div>
 <div id="content">
-    <form id="add-book-form" method="post">
+    <form id="add-book-form" method="post" onsubmit="return validate()">
+        <div th:if="${info != null}" th:text="${info}" class="error-info"></div>
         <input type="text" placeholder="Tytuł" th:field="*{book.title}">
         <input type="text" placeholder="Autor" th:field="*{book.author}">
-        <input type="text" placeholder="Cena" th:field="*{book.price}">
-        <input type="text" placeholder="Ilość" th:field="*{book.pieces}">
-        <input type="text" placeholder="ISBN" th:field="*{book.isbn}">
+        <input type="text" placeholder="Cena" th:field="*{book.price}" id="price-input">
+        <input type="text" placeholder="Ilość" th:field="*{book.pieces}" id="pieces-input">
+        <input type="text" placeholder="ISBN" th:field="*{book.isbn}" id="isbn-input">
         <input type="submit" value="Wyślij">
     </form>
 </div>

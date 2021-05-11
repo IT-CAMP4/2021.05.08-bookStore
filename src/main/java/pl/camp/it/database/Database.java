@@ -1,7 +1,9 @@
 package pl.camp.it.database;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Component;
 import pl.camp.it.model.Book;
+import pl.camp.it.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 @Component
 public class Database {
     private List<Book> books = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     public Database() {
         books.add(new Book(
@@ -41,6 +44,9 @@ public class Database {
                 5,
                 "978-83-283-7308-2"
         ));
+
+        users.add(new User("Mateusz", "Bereda", "admin", DigestUtils.md5Hex("admin"), User.Role.ADMIN));
+        users.add(new User("Mateusz", "Bereda", "user", DigestUtils.md5Hex("user"), User.Role.USER));
     }
 
     public List<Book> getAllBooks() {
@@ -49,5 +55,24 @@ public class Database {
 
     public void addBook(Book book) {
         this.books.add(book);
+    }
+
+    public Book findBookByIsbn(String isbn) {
+        for(Book book : this.books) {
+            if(book.getIsbn().equals(isbn)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    public User authenticate(String login, String password) {
+        for(User user : this.users) {
+            if(user.getLogin().equals(login) && user.getPassword().equals(DigestUtils.md5Hex(password))) {
+                return user;
+            }
+        }
+
+        return null;
     }
 }

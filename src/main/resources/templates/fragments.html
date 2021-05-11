@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="menu" th:fragment="menu">
+    <a href="/main">Strona Główna</a>
+    <a href="/contact">Kontakt</a>
+    <a href="/addBook" th:if="${role?.name() == 'ADMIN'}">Dodaj książkę</a>
+    <a href="/basket" th:if="${role?.name() == 'USER'}">Koszyk</a>
+    <a href="/login" th:if="${logged == false}">Zaloguj</a>
+    <a href="/logout" th:if="${logged == true}">Wyloguj</a>
+</div>
+
+<img src="/logo.png" alt="Logo" id="logo" th:fragment="logo">
+</body>
+</html>

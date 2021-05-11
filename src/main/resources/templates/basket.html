@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Księgarnia</title>
+    <link rel="stylesheet" href="/main.css"/>
+    <link rel="stylesheet" href="/commons.css"/>
+</head>
+<body>
+<div th:replace="fragments.html :: logo"></div>
+<div th:replace="fragments.html :: menu"></div>
+<div id="content">
+    <th:block th:each="basketPosition : ${basket.basketPositions}">
+        <div class="position">
+            <p th:text="${basketPosition.book.title}" class="book-title"></p>
+            <p th:text="${basketPosition.book.author}" class="book-author"></p>
+            <div class="book-info">
+                <div th:text="'Cena: ' + ${basketPosition.book.price}"></div>
+                <div th:text="'Ilość sztuk: ' + ${basketPosition.pieces}"></div>
+                <div th:text="'ISBN: ' + ${basketPosition.book.isbn}"></div>
+            </div>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>
