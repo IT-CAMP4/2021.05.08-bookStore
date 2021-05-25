@@ -1,0 +1,39 @@
+.order {
+    margin: 5px 0;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.order-id {
+    font-size: 30px;
+}
+
+.position div {
+    display: inline-block;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.position-title {
+    width: 40%;
+}
+
+.position-pieces {
+    width: 10%;
+}
+
+.position-price {
+    width: 20%;
+}
+
+.position-sum-price {
+    width: 20%;
+}
+
+.positions {
+    display: none;
+}
+
+.order:hover > .positions {
+    display: block;
+}

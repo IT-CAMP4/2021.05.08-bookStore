@@ -10,6 +10,10 @@
     <div th:replace="fragments.html :: logo"></div>
     <div th:replace="fragments.html :: menu"></div>
     <div id="content">
+        <form id="finder" method="post" action="/find">
+            <input type="text" name="pattern">
+            <input type="submit" value="Wyszukaj">
+        </form>
         <th:block th:each="book : ${books}">
             <div class="book">
                 <p th:text="${book.title}" class="book-title"></p>

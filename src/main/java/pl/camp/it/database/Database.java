@@ -3,6 +3,7 @@ package pl.camp.it.database;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Component;
 import pl.camp.it.model.Book;
+import pl.camp.it.model.Order;
 import pl.camp.it.model.User;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Database {
     private List<Book> books = new ArrayList<>();
     private List<User> users = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     public Database() {
         books.add(new Book(
@@ -53,6 +55,17 @@ public class Database {
         return this.books;
     }
 
+    public List<Book> getFilteredBooks(String pattern) {
+        List<Book> filteredBooks = new ArrayList<>();
+        for(Book book : this.books) {
+            if(book.getTitle().toLowerCase().contains(pattern.toLowerCase()) ||
+                    book.getAuthor().toLowerCase().contains(pattern.toLowerCase())) {
+                filteredBooks.add(book);
+            }
+        }
+        return filteredBooks;
+    }
+
     public void addBook(Book book) {
         this.books.add(book);
     }
@@ -74,5 +87,25 @@ public class Database {
         }
 
         return null;
+    }
+
+    public void addUser(User user) {
+        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+        this.users.add(user);
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
+    }
+
+    public List<Order> getOrdersForUser(User user) {
+        List<Order> result = new ArrayList<>();
+        for(Order order : this.orders) {
+            if(order.getUser().getLogin().equals(user.getLogin())) {
+                result.add(order);
+            }
+        }
+
+        return result;
     }
 }

@@ -10,6 +10,7 @@
     <a href="/contact">Kontakt</a>
     <a href="/addBook" th:if="${role?.name() == 'ADMIN'}">Dodaj książkę</a>
     <a href="/basket" th:if="${role?.name() == 'USER'}">Koszyk</a>
+    <a href="/orders" th:if="${role?.name() == 'USER'}">Zamówienia</a>
     <a href="/login" th:if="${logged == false}">Zaloguj</a>
     <a href="/logout" th:if="${logged == true}">Wyloguj</a>
 </div>

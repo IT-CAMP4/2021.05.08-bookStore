@@ -23,3 +23,7 @@
 .error-info {
     color: red;
 }
+
+#content {
+    text-align: center;
+}

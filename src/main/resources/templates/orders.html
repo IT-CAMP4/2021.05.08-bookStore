@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Księgarnia</title>
+    <link rel="stylesheet" href="/orders.css"/>
+    <link rel="stylesheet" href="/commons.css"/>
+</head>
+<body>
+    <div th:replace="fragments.html :: logo"></div>
+    <div th:replace="fragments.html :: menu"></div>
+    <div id="content">
+        <th:block th:each="order : ${orders}">
+            <div class="order">
+                <div th:text="${order.id}" class="order-id"></div>
+                <div th:text="${order.date}"></div>
+                <div th:text="${order.price + ' zł'}"></div>
+                <div class="positions">
+                    <th:block th:each="basketPosition : ${order.basket.basketPositions}">
+                        <div class="position">
+                            <div th:text="${basketPosition.book.title}" class="position-title"></div>
+                            <div th:text="${basketPosition.pieces}" class="position-pieces"></div>
+                            <div th:text="${basketPosition.book.price + ' zł'}" class="position-price"></div>
+                            <div th:text="${(basketPosition.pieces * basketPosition.book.price) + ' zł'}" class="position-sum-price"></div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+#content {
+    position: relative;
+}
+
+#table-labels {
+    margin-top: 10px;
+}
+
+#table-labels div {
+    display: inline-block;
+    text-align: center;
+}
+
+#title-label {
+    width: 40%;
+}
+
+#quantity-label {
+    width: 10%;
+}
+
+#price-label {
+    width: 20%;
+}
+
+#price-sum-label {
+    width: 20%;
+}
+
+.position {
+    margin: 5px 0;
+}
+
+.position div {
+    display: inline-block;
+    text-align: center;
+}
+
+.position-title {
+    width: 40%;
+}
+
+.position-pieces {
+    width: 10%;
+}
+
+.position-price {
+    width: 20%;
+}
+
+.position-sum-price {
+    width: 20%;
+}
+
+.remove-button {
+    width: 9%;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+#bill-label {
+    text-align: center;
+    display: inline-block;
+    float: right;
+}
+
+#bill-value {
+    width: 24%;
+    text-align: center;
+    float: right;
+    border-top: 1px solid black;
+}

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.camp.it.database.Database;
 import pl.camp.it.model.Book;
 import pl.camp.it.model.view.Mail;
@@ -25,7 +26,12 @@ public class CommonController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main(Model model) {
-        List<Book> books = this.database.getAllBooks();
+        List<Book> books;
+        if(this.sessionObject.getFindPattern() != null && !this.sessionObject.getFindPattern().equals("")) {
+            books = this.database.getFilteredBooks(this.sessionObject.getFindPattern());
+        } else {
+            books = this.database.getAllBooks();
+        }
         model.addAttribute("books", books);
         model.addAttribute("logged", this.sessionObject.isLogged());
         model.addAttribute("role",
@@ -52,6 +58,12 @@ public class CommonController {
         System.out.println(mail.getTitle());
         System.out.println(mail.getMessage());
         System.out.println(mail.getName());
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String find(@RequestParam String pattern) {
+        this.sessionObject.setFindPattern(pattern);
         return "redirect:/";
     }
 }

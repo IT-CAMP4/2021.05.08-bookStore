@@ -12,11 +12,12 @@
 <div id="content">
     <form id="login-form" method="post" onsubmit="return validate()">
         <div th:if="${info != null}" th:text="${info}" class="error-info"></div>
-        <input type="text" placeholder="Login" id="login-field" name="login">
-        <input type="password" placeholder="Hasło" id="password-field" name="password">
-        <input type="submit" value="Zaloguj">
+        <input type="text" placeholder="Login" id="login-field" name="login" th:field="*{user.login}">
+        <input type="password" placeholder="Hasło" id="password-field" name="password" th:field="*{user.password}">
+        <input type="text" placeholder="Imie" id="name-field" name="name" th:field="*{user.name}">
+        <input type="text" placeholder="Nazwisko" id="surname-field" name="surname" th:field="*{user.surname}">
+        <input type="submit" value="Rejestruj">
     </form>
-    <a href="/register">Zarejestruj</a>
 </div>
 </body>
 </html>

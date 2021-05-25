@@ -3,10 +3,10 @@ package pl.camp.it.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.annotation.SessionScope;
 import pl.camp.it.database.Database;
 import pl.camp.it.model.User;
 import pl.camp.it.session.SessionObject;
@@ -32,6 +32,8 @@ public class AuthenticationController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam String login, @RequestParam String password) {
         if(!LoginValidator.validateLogin(login) || !LoginValidator.validatePassword(password)) {
+            System.out.println("Nie przeszła walidacja logowania!!");
+            System.out.println("Dane: " + login + ", hasło: " + password);
             this.sessionObject.setInfo("Logowanie nieudane !!");
             return "redirect:/login";
         }
@@ -50,5 +52,21 @@ public class AuthenticationController {
     public String logout() {
         this.sessionObject.logoutUser();
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registerForm(Model model) {
+        model.addAttribute("user", new User());
+
+        return "register";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@ModelAttribute User user) {
+        user.setRole(User.Role.USER);
+
+        this.database.addUser(user);
+
+        return "redirect:/login";
     }
 }

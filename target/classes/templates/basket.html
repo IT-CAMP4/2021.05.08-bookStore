@@ -3,24 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Super Księgarnia</title>
-    <link rel="stylesheet" href="/main.css"/>
+    <link rel="stylesheet" href="/basket.css"/>
     <link rel="stylesheet" href="/commons.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
 <div th:replace="fragments.html :: logo"></div>
 <div th:replace="fragments.html :: menu"></div>
 <div id="content">
+    <div id="table-labels">
+        <div id="title-label">Tytuł</div>
+        <div id="quantity-label">Ilość</div>
+        <div id="price-label">Cena jednostkowa</div>
+        <div id="price-sum-label">Cena sumaryczna</div>
+    </div>
     <th:block th:each="basketPosition : ${basket.basketPositions}">
         <div class="position">
-            <p th:text="${basketPosition.book.title}" class="book-title"></p>
-            <p th:text="${basketPosition.book.author}" class="book-author"></p>
-            <div class="book-info">
-                <div th:text="'Cena: ' + ${basketPosition.book.price}"></div>
-                <div th:text="'Ilość sztuk: ' + ${basketPosition.pieces}"></div>
-                <div th:text="'ISBN: ' + ${basketPosition.book.isbn}"></div>
-            </div>
+            <div th:text="${basketPosition.book.title}" class="position-title"></div>
+            <div th:text="${basketPosition.pieces}" class="position-pieces"></div>
+            <div th:text="${basketPosition.book.price + ' zł'}" class="position-price"></div>
+            <div th:text="${(basketPosition.pieces * basketPosition.book.price) + ' zł'}" class="position-sum-price"></div>
+            <a th:href="@{/removeBookFromBasket/{isbn}(isbn=${basketPosition.book.isbn})}" class="remove-button"><i class="fas fa-trash"></i></a>
         </div>
     </th:block>
+    <div th:text="${sum + ' zł'}" id="bill-value"></div>
+    <div id="bill-label">Suma:</div>
+    <a href="/order">Złóż zamówienie</a>
 </div>
 </body>
 </html>
