@@ -7,32 +7,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.camp.it.database.Database;
-import pl.camp.it.model.Book;
 import pl.camp.it.model.view.Mail;
+import pl.camp.it.services.IBookService;
+import pl.camp.it.services.impl.BookService;
 import pl.camp.it.session.SessionObject;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Controller
 public class CommonController {
 
     @Autowired
-    Database database;
+    IBookService bookService;
 
     @Resource
     SessionObject sessionObject;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main(Model model) {
-        List<Book> books;
-        if(this.sessionObject.getFindPattern() != null && !this.sessionObject.getFindPattern().equals("")) {
-            books = this.database.getFilteredBooks(this.sessionObject.getFindPattern());
-        } else {
-            books = this.database.getAllBooks();
-        }
-        model.addAttribute("books", books);
+        model.addAttribute("books", this.bookService.getBooksWithFilter());
         model.addAttribute("logged", this.sessionObject.isLogged());
         model.addAttribute("role",
                 this.sessionObject.getUser() != null ? this.sessionObject.getUser().getRole() : null);

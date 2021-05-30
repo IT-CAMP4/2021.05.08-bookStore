@@ -16,7 +16,7 @@
                 <div th:text="${order.date}"></div>
                 <div th:text="${order.price + ' zł'}"></div>
                 <div class="positions">
-                    <th:block th:each="basketPosition : ${order.basket.basketPositions}">
+                    <th:block th:each="basketPosition : ${order.positions}">
                         <div class="position">
                             <div th:text="${basketPosition.book.title}" class="position-title"></div>
                             <div th:text="${basketPosition.pieces}" class="position-pieces"></div>

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.camp.it.database.Database;
 import pl.camp.it.model.Book;
+import pl.camp.it.services.IBookService;
+import pl.camp.it.services.impl.BookService;
 import pl.camp.it.session.SessionObject;
-import pl.camp.it.validators.BookValidator;
 
 import javax.annotation.Resource;
 
@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 public class BookController {
 
     @Autowired
-    Database database;
+    IBookService bookService;
 
     @Resource
     SessionObject sessionObject;
@@ -35,26 +35,15 @@ public class BookController {
 
     @RequestMapping(value = "/addBook", method = RequestMethod.POST)
     public String addBook(@ModelAttribute Book book) {
-        if(!BookValidator.validateBasics(book)) {
-            this.sessionObject.setInfo("Nieprawidłowy ISBN lub ilość !!");
-            return "redirect:/addBook";
+        if(this.bookService.addBook(book)) {
+            return "redirect:/";
         }
-        Book bookFromDatabase = this.database.findBookByIsbn(book.getIsbn());
-        if(bookFromDatabase != null) {
-            bookFromDatabase.setPieces(bookFromDatabase.getPieces() + book.getPieces());
-        } else {
-            if(!BookValidator.validateFull(book)) {
-                this.sessionObject.setInfo("Książka o podanym ISBN nie istnieje, pełne dane wymagane !!");
-                return "redirect:/addBook";
-            }
-            this.database.addBook(book);
-        }
-        return "redirect:/";
+        return "redirect:/addBook";
     }
 
     @RequestMapping(value = "/editBook/{isbn}", method = RequestMethod.GET)
     public String editBookForm(Model model, @PathVariable String isbn) {
-        Book book = this.database.findBookByIsbn(isbn);
+        Book book = this.bookService.findBookByIsbn(isbn);
         if(book == null) {
             return "redirect:/main";
         }
@@ -68,17 +57,10 @@ public class BookController {
 
     @RequestMapping(value = "/editBook/{isbn}", method = RequestMethod.POST)
     public String editBook(@PathVariable String isbn, @ModelAttribute Book book) {
-        Book bookFromDb = database.findBookByIsbn(isbn);
-        if(bookFromDb == null) {
-            return "redirect:/editBook/" + isbn;
+        if(this.bookService.updateBook(isbn, book)) {
+            return "redirect:/main";
         }
 
-        bookFromDb.setTitle(book.getTitle());
-        bookFromDb.setAuthor(book.getAuthor());
-        bookFromDb.setPieces(book.getPieces());
-        bookFromDb.setPrice(book.getPrice());
-        bookFromDb.setIsbn(book.getIsbn());
-
-        return "redirect:/main";
+        return "redirect:/editBook/" + isbn;
     }
 }

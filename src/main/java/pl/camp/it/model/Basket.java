@@ -13,6 +13,10 @@ public class Basket {
         return basketPositions;
     }
 
+    public void setBasketPositions(List<BasketPosition> basketPositions) {
+        this.basketPositions = basketPositions;
+    }
+
     public void addBook(Book book) {
         for(BasketPosition basketPosition : this.basketPositions) {
             if(basketPosition.getBook().getIsbn().equals(book.getIsbn())) {
@@ -28,32 +32,5 @@ public class Basket {
         this.basketPositions.add(basketPosition);
     }
 
-    public class BasketPosition {
-        private Book book;
-        private int pieces;
 
-        public BasketPosition() {
-        }
-
-        public BasketPosition(Book book, int pieces) {
-            this.book = book;
-            this.pieces = pieces;
-        }
-
-        public Book getBook() {
-            return book;
-        }
-
-        public void setBook(Book book) {
-            this.book = book;
-        }
-
-        public int getPieces() {
-            return pieces;
-        }
-
-        public void setPieces(int pieces) {
-            this.pieces = pieces;
-        }
-    }
 }

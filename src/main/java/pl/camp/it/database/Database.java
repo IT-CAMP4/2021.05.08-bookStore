@@ -9,7 +9,6 @@ import pl.camp.it.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class Database {
     private List<Book> books = new ArrayList<>();
     private List<User> users = new ArrayList<>();
@@ -17,6 +16,7 @@ public class Database {
 
     public Database() {
         books.add(new Book(
+                1,
                 "Pragmatyczny programista. Od czeladnika do mistrza. Wydanie II",
                 "David Thomas, Andrew Hunt",
                 53.90,
@@ -24,6 +24,7 @@ public class Database {
                 "978-83-283-7139-2"));
 
         books.add(new Book(
+                2,
                 "Algorytmy sztucznej inteligencji. Ilustrowany przewodnik",
                 "Rishal Hurbans",
                 47.40,
@@ -32,6 +33,7 @@ public class Database {
         ));
 
         books.add(new Book(
+                3,
                 "Czysty kod. Podręcznik dobrego programisty",
                 "Robert C. Martin",
                 48.30,
@@ -40,6 +42,7 @@ public class Database {
         ));
 
         books.add(new Book(
+                4,
                 "JavaScript. Przewodnik. Poznaj język mistrzów programowania. Wydanie VII",
                 "David Flanagan",
                 83.30,
@@ -47,8 +50,8 @@ public class Database {
                 "978-83-283-7308-2"
         ));
 
-        users.add(new User("Mateusz", "Bereda", "admin", DigestUtils.md5Hex("admin"), User.Role.ADMIN));
-        users.add(new User("Mateusz", "Bereda", "user", DigestUtils.md5Hex("user"), User.Role.USER));
+        users.add(new User(1, "Mateusz", "Bereda", "admin", DigestUtils.md5Hex("admin"), User.Role.ADMIN));
+        users.add(new User(2, "Mateusz", "Bereda", "user", DigestUtils.md5Hex("user"), User.Role.USER));
     }
 
     public List<Book> getAllBooks() {

@@ -1,27 +1,45 @@
 package pl.camp.it.model;
 
 import java.util.Date;
-import java.util.Random;
+import java.util.List;
 
 public class Order {
     private int id;
     private User user;
-    private Basket basket;
+    private List<BasketPosition> positions;
     private double price;
     private Date date;
+    private int userId;
 
-    public Order(User user, Basket basket) {
+    public Order(User user, List<BasketPosition> positions) {
         this.user = user;
-        this.basket = basket;
+        this.positions = positions;
 
         this.price = 0;
-        for(Basket.BasketPosition basketPosition : basket.getBasketPositions()) {
+        for(BasketPosition basketPosition : this.positions) {
             this.price = this.price + (basketPosition.getBook().getPrice() * basketPosition.getPieces());
         }
 
         this.date = new Date();
+    }
 
-        this.id = new Random().nextInt(900000) + 100000;
+    public Order() {
+    }
+
+    public List<BasketPosition> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<BasketPosition> positions) {
+        this.positions = positions;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public User getUser() {
@@ -30,14 +48,6 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Basket getBasket() {
-        return basket;
-    }
-
-    public void setBasket(Basket basket) {
-        this.basket = basket;
     }
 
     public double getPrice() {
