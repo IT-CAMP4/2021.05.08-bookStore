@@ -3,6 +3,7 @@ package pl.camp.it.services.impl;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.camp.it.dao.IUserDAO;
 import pl.camp.it.dao.impl.UserDAO;
 import pl.camp.it.model.User;
@@ -11,7 +12,7 @@ import pl.camp.it.session.SessionObject;
 
 import javax.annotation.Resource;
 
-@Component
+@Service
 public class AuthenticationService implements IAuthenticationService {
 
     @Autowired

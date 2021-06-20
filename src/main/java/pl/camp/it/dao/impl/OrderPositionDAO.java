@@ -1,9 +1,9 @@
 package pl.camp.it.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pl.camp.it.dao.IOrderPositionDAO;
-import pl.camp.it.model.BasketPosition;
+import pl.camp.it.model.OrderPosition;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-@Component
+@Repository
 public class OrderPositionDAO implements IOrderPositionDAO {
 
     @Autowired
     Connection connection;
 
-    public void addOrderPosition(BasketPosition position, int orderId) {
+    public void addOrderPosition(OrderPosition position, int orderId) {
         try {
             String sql = "INSERT INTO torderposition (pieces, book_id, order_id) VALUES (?, ?, ?);";
 
@@ -35,8 +35,8 @@ public class OrderPositionDAO implements IOrderPositionDAO {
         }
     }
 
-    public List<BasketPosition> getOrderPositionsForOrder(int orderId) {
-        List<BasketPosition> result = new ArrayList<>();
+    public List<OrderPosition> getOrderPositionsForOrder(int orderId) {
+        List<OrderPosition> result = new ArrayList<>();
         try {
             String sql = "SELECT * FROM torderposition WHERE order_id = ?";
 
@@ -47,10 +47,10 @@ public class OrderPositionDAO implements IOrderPositionDAO {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                BasketPosition basketPosition = new BasketPosition();
+                OrderPosition basketPosition = new OrderPosition();
                 basketPosition.setId(rs.getInt("id"));
                 basketPosition.setPieces(rs.getInt("pieces"));
-                basketPosition.setBookId(rs.getInt("book_id"));
+                //basketPosition.setBookId(rs.getInt("book_id"));
 
                 result.add(basketPosition);
             }

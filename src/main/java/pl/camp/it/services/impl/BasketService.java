@@ -1,14 +1,11 @@
 package pl.camp.it.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.camp.it.dao.IBookDAO;
 import pl.camp.it.dao.IOrderDAO;
 import pl.camp.it.dao.IOrderPositionDAO;
-import pl.camp.it.dao.impl.BookDAO;
-import pl.camp.it.dao.impl.OrderDAO;
-import pl.camp.it.dao.impl.OrderPositionDAO;
-import pl.camp.it.model.BasketPosition;
+import pl.camp.it.model.OrderPosition;
 import pl.camp.it.model.Book;
 import pl.camp.it.model.Order;
 import pl.camp.it.services.IBasketService;
@@ -18,7 +15,7 @@ import javax.annotation.Resource;
 import java.util.Iterator;
 import java.util.List;
 
-@Component
+@Service
 public class BasketService implements IBasketService {
 
     @Autowired
@@ -42,7 +39,7 @@ public class BasketService implements IBasketService {
 
     public double calculateBasketSum() {
         double sum = 0;
-        for(BasketPosition basketPosition : this.sessionObject.getBasket().getBasketPositions()) {
+        for(OrderPosition basketPosition : this.sessionObject.getBasket().getBasketPositions()) {
             sum = sum + (basketPosition.getBook().getPrice() * basketPosition.getPieces());
         }
 
@@ -50,7 +47,7 @@ public class BasketService implements IBasketService {
     }
 
     public void removeBookFromBasket(String isbn) {
-        Iterator<BasketPosition> iterator =  this.sessionObject.getBasket().getBasketPositions().iterator();
+        Iterator<OrderPosition> iterator =  this.sessionObject.getBasket().getBasketPositions().iterator();
 
         while (iterator.hasNext()) {
             if(iterator.next().getBook().getIsbn().equals(isbn)) {
@@ -64,9 +61,9 @@ public class BasketService implements IBasketService {
         List<Book> booksFromDb = this.bookDAO.getAllBooks();
 
         for(Book book : booksFromDb) {
-            Iterator<BasketPosition> iterator = this.sessionObject.getBasket().getBasketPositions().iterator();
+            Iterator<OrderPosition> iterator = this.sessionObject.getBasket().getBasketPositions().iterator();
             while (iterator.hasNext()) {
-                BasketPosition actualBasketPosition = iterator.next();
+                OrderPosition actualBasketPosition = iterator.next();
                 if(book.getIsbn().equals(actualBasketPosition.getBook().getIsbn()) && book.getPieces() < actualBasketPosition.getPieces()) {
                     iterator.remove();
                     return;
@@ -74,21 +71,21 @@ public class BasketService implements IBasketService {
             }
         }
 
-        Order order = new Order(this.sessionObject.getUser(), this.sessionObject.getBasket().getBasketPositions());
+        /*Order order = new Order(this.sessionObject.getUser(), this.sessionObject.getBasket().getBasketPositions());
         int orderId = this.orderDAO.addOrder(order);
 
-        for(BasketPosition basketPosition : order.getPositions()) {
+        for(OrderPosition basketPosition : order.getPositions()) {
             this.orderPositionDAO.addOrderPosition(basketPosition, orderId);
         }
 
         for(Book book : booksFromDb) {
-            for(BasketPosition position : this.sessionObject.getBasket().getBasketPositions()) {
+            for(OrderPosition position : this.sessionObject.getBasket().getBasketPositions()) {
                 if(book.getIsbn().equals(position.getBook().getIsbn())) {
                     book.setPieces(book.getPieces() - position.getPieces());
                     this.bookDAO.updateBook(book);
                 }
             }
-        }
+        }*/
 
         this.sessionObject.createNewBasket();
     }

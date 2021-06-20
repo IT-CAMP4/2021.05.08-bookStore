@@ -2,6 +2,7 @@ package pl.camp.it.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pl.camp.it.dao.IBookDAO;
 import pl.camp.it.model.Book;
 
@@ -9,7 +10,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class BookDAO implements IBookDAO {
 
     @Autowired

@@ -1,22 +1,27 @@
 package pl.camp.it.model;
 
+import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
+@Entity(name = "torder")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-    private List<BasketPosition> positions;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<OrderPosition> positions;
     private double price;
     private Date date;
-    private int userId;
 
-    public Order(User user, List<BasketPosition> positions) {
+    public Order(User user, Set<OrderPosition> positions) {
         this.user = user;
         this.positions = positions;
 
         this.price = 0;
-        for(BasketPosition basketPosition : this.positions) {
+        for(OrderPosition basketPosition : this.positions) {
             this.price = this.price + (basketPosition.getBook().getPrice() * basketPosition.getPieces());
         }
 
@@ -26,20 +31,12 @@ public class Order {
     public Order() {
     }
 
-    public List<BasketPosition> getPositions() {
+    public Set<OrderPosition> getPositions() {
         return positions;
     }
 
-    public void setPositions(List<BasketPosition> positions) {
+    public void setPositions(Set<OrderPosition> positions) {
         this.positions = positions;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public User getUser() {

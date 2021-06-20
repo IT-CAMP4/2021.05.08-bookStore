@@ -2,6 +2,7 @@ package pl.camp.it.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pl.camp.it.dao.IUserDAO;
 import pl.camp.it.model.User;
 
@@ -10,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
+@Repository
 public class UserDAO implements IUserDAO {
 
     @Autowired

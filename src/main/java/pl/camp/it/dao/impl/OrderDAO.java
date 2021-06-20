@@ -2,6 +2,7 @@ package pl.camp.it.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pl.camp.it.dao.IOrderDAO;
 import pl.camp.it.model.Order;
 
@@ -9,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class OrderDAO implements IOrderDAO {
 
     @Autowired
@@ -56,7 +57,7 @@ public class OrderDAO implements IOrderDAO {
                 order.setId(rs.getInt("id"));
                 order.setPrice(rs.getDouble("price"));
                 order.setDate(rs.getDate("date"));
-                order.setUserId(rs.getInt("user_id"));
+                //order.setUserId(rs.getInt("user_id"));
 
                 result.add(order);
             }

@@ -1,26 +1,23 @@
 package pl.camp.it.model;
 
-public class BasketPosition {
+import javax.persistence.*;
+
+@Entity(name = "torderposition")
+public class OrderPosition {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToOne(fetch = FetchType.EAGER)
     private Book book;
     private int pieces;
-    private int bookId;
 
-    public BasketPosition() {
+    public OrderPosition() {
     }
 
-    public BasketPosition(int id, Book book, int pieces) {
+    public OrderPosition(int id, Book book, int pieces) {
         this.id = id;
         this.book = book;
         this.pieces = pieces;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
     }
 
     public int getId() {
