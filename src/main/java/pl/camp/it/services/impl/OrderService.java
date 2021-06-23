@@ -20,28 +20,10 @@ public class OrderService implements IOrderService {
     @Autowired
     IOrderDAO orderDAO;
 
-    @Autowired
-    IOrderPositionDAO orderPositionDAO;
-
-    @Autowired
-    IBookDAO bookDAO;
-
     @Resource
     SessionObject sessionObject;
 
     public List<Order> getOrdersForUser() {
-        List<Order> orders = this.orderDAO.getOrdersForUser(this.sessionObject.getUser().getId());
-
-        /*for(Order order : orders) {
-            List<OrderPosition> basketPositions = this.orderPositionDAO.getOrderPositionsForOrder(order.getId());
-            for(OrderPosition position : basketPositions) {
-                Book book = this.bookDAO.getBookById(position.getBookId());
-                position.setBook(book);
-            }
-
-            order.setPositions(basketPositions);
-        }*/
-
-        return orders;
+        return this.orderDAO.getOrdersForUser(this.sessionObject.getUser().getId());
     }
 }

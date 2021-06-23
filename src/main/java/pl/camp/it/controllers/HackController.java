@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.camp.it.dao.IBookDAO;
 import pl.camp.it.dao.impl.BookDAO;
 import pl.camp.it.model.Book;
 
@@ -11,7 +12,7 @@ import pl.camp.it.model.Book;
 public class HackController {
 
     @Autowired
-    BookDAO bookDAO;
+    IBookDAO bookDAO;
 
     @RequestMapping(value = "/hack/addBooks", method = RequestMethod.GET)
     public String addBooks() {

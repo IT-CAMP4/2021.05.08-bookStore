@@ -24,12 +24,14 @@
 
         <property name="show_sql">true</property>
 
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <mapping class="pl.camp.it.model.Book"/>
         <mapping class="pl.camp.it.model.Order"/>
         <mapping class="pl.camp.it.model.OrderPosition"/>
         <mapping class="pl.camp.it.model.User"/>
+
+        <mapping resource="Book.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

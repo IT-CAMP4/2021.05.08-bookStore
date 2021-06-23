@@ -7,5 +7,5 @@ import java.util.List;
 public interface IOrderDAO {
     int addOrder(Order order);
     List<Order> getOrdersForUser(int userId);
-
+    void persistOrder(Order order);
 }

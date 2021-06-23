@@ -71,4 +71,9 @@ public class BookService implements IBookService {
             return this.bookDAO.getAllBooks();
         }
     }
+
+    @Override
+    public List<Book> getAllBooks() {
+        return this.bookDAO.getAllBooks();
+    }
 }

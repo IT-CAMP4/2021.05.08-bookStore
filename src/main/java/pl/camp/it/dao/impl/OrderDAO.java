@@ -10,7 +10,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
 public class OrderDAO implements IOrderDAO {
 
     @Autowired
@@ -66,5 +65,10 @@ public class OrderDAO implements IOrderDAO {
         }
 
         return result;
+    }
+
+    @Override
+    public void persistOrder(Order order) {
+
     }
 }

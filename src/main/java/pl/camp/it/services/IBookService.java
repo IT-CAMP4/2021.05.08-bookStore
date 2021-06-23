@@ -9,4 +9,5 @@ public interface IBookService {
     Book findBookByIsbn(String isbn);
     boolean updateBook(String isbn, Book book);
     List<Book> getBooksWithFilter();
+    List<Book> getAllBooks();
 }

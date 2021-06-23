@@ -12,6 +12,7 @@ import pl.camp.it.services.IBasketService;
 import pl.camp.it.session.SessionObject;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,9 +24,6 @@ public class BasketService implements IBasketService {
 
     @Autowired
     IOrderDAO orderDAO;
-
-    @Autowired
-    IOrderPositionDAO orderPositionDAO;
 
     @Resource
     SessionObject sessionObject;
@@ -71,12 +69,8 @@ public class BasketService implements IBasketService {
             }
         }
 
-        /*Order order = new Order(this.sessionObject.getUser(), this.sessionObject.getBasket().getBasketPositions());
-        int orderId = this.orderDAO.addOrder(order);
-
-        for(OrderPosition basketPosition : order.getPositions()) {
-            this.orderPositionDAO.addOrderPosition(basketPosition, orderId);
-        }
+        Order order = new Order(this.sessionObject.getUser(), new HashSet<>(this.sessionObject.getBasket().getBasketPositions()));
+        this.orderDAO.persistOrder(order);
 
         for(Book book : booksFromDb) {
             for(OrderPosition position : this.sessionObject.getBasket().getBasketPositions()) {
@@ -85,7 +79,7 @@ public class BasketService implements IBasketService {
                     this.bookDAO.updateBook(book);
                 }
             }
-        }*/
+        }
 
         this.sessionObject.createNewBasket();
     }
