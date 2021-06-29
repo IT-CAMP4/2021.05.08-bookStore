@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import pl.camp.it.dao.IOrderDAO;
 import pl.camp.it.model.Order;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository
@@ -48,5 +49,22 @@ public class HibernateOrderDAO implements IOrderDAO {
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public Order getOrderById(int id) {
+        Session session = this.sessionFactory.openSession();
+        Query<Order> query = session.createQuery("FROM pl.camp.it.model.Order WHERE id = :id");
+        query.setParameter("id", id);
+        Order order = null;
+        try {
+            order = query.getSingleResult();
+        } catch (NoResultException e) {
+
+        } finally {
+            session.close();
+        }
+
+        return order;
     }
 }

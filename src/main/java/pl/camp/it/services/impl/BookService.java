@@ -43,6 +43,11 @@ public class BookService implements IBookService {
         return true;
     }
 
+    @Override
+    public Book getBookById(int id) {
+        return this.bookDAO.getBookById(id);
+    }
+
     public Book findBookByIsbn(String isbn) {
         return this.bookDAO.findBookByIsbn(isbn);
     }

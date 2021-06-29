@@ -71,4 +71,9 @@ public class OrderDAO implements IOrderDAO {
     public void persistOrder(Order order) {
 
     }
+
+    @Override
+    public Order getOrderById(int id) {
+        return null;
+    }
 }

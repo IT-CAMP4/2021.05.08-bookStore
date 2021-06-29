@@ -29,10 +29,8 @@ public class RestApiController {
     IOrderService orderService;
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public ResponseEntity<List<Book>> getAllBooks() {
-        return ResponseEntity.ok()
-                .header("Content-Type", "application/json")
-                .body(this.bookService.getAllBooks());
+    public List<Book> getAllBooks() {
+        return this.bookService.getAllBooks();
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
