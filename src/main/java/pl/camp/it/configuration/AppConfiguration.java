@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @ComponentScan("pl.camp.it")
 public class AppConfiguration {
 
-    @Bean
+    /*@Bean
     public Connection connection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -23,7 +23,7 @@ public class AppConfiguration {
         }
 
         return null;
-    }
+    }*/
 
     @Bean
     public SessionFactory sessionFactory() {

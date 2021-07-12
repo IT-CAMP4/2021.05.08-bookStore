@@ -31,6 +31,4 @@ public class Basket {
 
         this.basketPositions.add(basketPosition);
     }
-
-
 }
