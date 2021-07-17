@@ -1,8 +1,12 @@
 package pl.camp.it.configuration;
 
+import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import pl.camp.it.dao.IBookDAO;
+import pl.camp.it.dao.IOrderDAO;
+import pl.camp.it.dao.IUserDAO;
 import pl.camp.it.dao.impl.HibernateBookDAOStub;
 import pl.camp.it.dao.impl.HibernateOrderDAOStub;
 import pl.camp.it.dao.impl.HibernateUserDAOStub;
@@ -15,7 +19,7 @@ import pl.camp.it.dao.impl.HibernateUserDAOStub;
 })
 public class TestConfiguration {
 
-    @Bean
+    /*@Bean
     public HibernateBookDAOStub hibernateBookDAOStub() {
         return new HibernateBookDAOStub();
     }
@@ -28,5 +32,20 @@ public class TestConfiguration {
     @Bean
     public HibernateUserDAOStub hibernateUserDAOStub() {
         return new HibernateUserDAOStub();
+    }*/
+
+    /*@Bean
+    public IUserDAO userDAO() {
+        return Mockito.mock(IUserDAO.class);
     }
+
+    @Bean
+    public IBookDAO bookDAO() {
+        return Mockito.mock(IBookDAO.class);
+    }
+
+    @Bean
+    public IOrderDAO orderDAO() {
+        return Mockito.mock(IOrderDAO.class);
+    }*/
 }
