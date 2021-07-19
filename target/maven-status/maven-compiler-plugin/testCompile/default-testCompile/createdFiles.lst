@@ -1,0 +1,12 @@
+pl\camp\it\model\OrderTest.class
+pl\camp\it\configuration\TestConfiguration.class
+pl\camp\it\dao\impl\HibernateOrderDAOStub.class
+pl\camp\it\validators\LoginValidatorTest.class
+pl\camp\it\services\impl\BookServiceTest.class
+pl\camp\it\services\impl\AuthenticationServiceTest.class
+pl\camp\it\services\impl\BasketServiceTest.class
+pl\camp\it\model\BasketTest.class
+pl\camp\it\session\SessionObjectTest.class
+pl\camp\it\validators\BookValidatorTest.class
+pl\camp\it\dao\impl\HibernateBookDAOStub.class
+pl\camp\it\dao\impl\HibernateUserDAOStub.class

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.camp.it.model.Book;
+import pl.camp.it.model.User;
 import pl.camp.it.services.IBookService;
 import pl.camp.it.services.impl.BookService;
 import pl.camp.it.session.SessionObject;
@@ -25,6 +26,9 @@ public class BookController {
 
     @RequestMapping(value = "/addBook", method = RequestMethod.GET)
     public String addBookForm(Model model) {
+        if(this.sessionObject.getUser().getRole() != User.Role.ADMIN) {
+            return "redirect:/main";
+        }
         model.addAttribute("book", new Book());
         model.addAttribute("info", this.sessionObject.getInfo());
         model.addAttribute("logged", this.sessionObject.isLogged());

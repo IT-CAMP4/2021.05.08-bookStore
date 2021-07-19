@@ -1,7 +1,6 @@
 package pl.camp.it.services.impl;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

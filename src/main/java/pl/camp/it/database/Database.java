@@ -8,6 +8,9 @@ import pl.camp.it.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Database {
     private List<Book> books = new ArrayList<>();
@@ -59,14 +62,20 @@ public class Database {
     }
 
     public List<Book> getFilteredBooks(String pattern) {
-        List<Book> filteredBooks = new ArrayList<>();
+        /*List<Book> filteredBooks = new ArrayList<>();
         for(Book book : this.books) {
             if(book.getTitle().toLowerCase().contains(pattern.toLowerCase()) ||
                     book.getAuthor().toLowerCase().contains(pattern.toLowerCase())) {
                 filteredBooks.add(book);
             }
         }
-        return filteredBooks;
+        return filteredBooks;*/
+
+        return this.books.stream()
+                .filter(b ->
+                        b.getTitle().toLowerCase().contains(pattern.toLowerCase()) ||
+                                b.getAuthor().toLowerCase().contains(pattern.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     public void addBook(Book book) {
@@ -74,12 +83,16 @@ public class Database {
     }
 
     public Book findBookByIsbn(String isbn) {
-        for(Book book : this.books) {
+        /*for(Book book : this.books) {
             if(book.getIsbn().equals(isbn)) {
                 return book;
             }
         }
-        return null;
+        return null;*/
+
+        return this.books.stream()
+                .filter(b -> b.getIsbn().equals(isbn))
+                .findFirst().orElse(null);
     }
 
     public User authenticate(String login, String password) {

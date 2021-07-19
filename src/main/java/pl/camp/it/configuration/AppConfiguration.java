@@ -4,6 +4,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import pl.camp.it.model.User;
+import pl.camp.it.services.IAuthenticationService;
+import pl.camp.it.services.impl.AuthenticationService;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,5 +1,12 @@
+E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\configuration\TestConfiguration.java
 E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\model\BasketTest.java
 E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\model\OrderTest.java
+E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\services\impl\BasketServiceTest.java
+E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\services\impl\AuthenticationServiceTest.java
 E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\validators\BookValidatorTest.java
 E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\session\SessionObjectTest.java
+E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\services\impl\BookServiceTest.java
+E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\dao\impl\HibernateBookDAOStub.java
+E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\dao\impl\HibernateOrderDAOStub.java
+E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\dao\impl\HibernateUserDAOStub.java
 E:\IT-CAMP4\2021.05.08-bookStore\src\test\java\pl\camp\it\validators\LoginValidatorTest.java
